@@ -1,8 +1,8 @@
-@use "sass:color";
-@use "sass:math";
-@import "reset";
-@import "utils";
-@import "variables";
+@use 'sass:color';
+@use 'sass:math';
+@import 'reset';
+@import 'utils';
+@import 'variables';
 
 body {
   min-height: 100vh;
@@ -26,7 +26,9 @@ button {
 }
 
 .rating-panel {
-  background: radial-gradient(circle at top, $dark-blue, color.adjust($dark-blue, $lightness: -7%));
+  background: radial-gradient(circle at top,
+      $dark-blue,
+      color.adjust($dark-blue, $lightness: -7%));
   border-radius: rem(15px);
   padding: rem(16px);
 }
@@ -56,6 +58,7 @@ button {
 .rating-prompt-title,
 .rating-thank-you-title {
   @include title;
+
   margin-top: rem(22px);
   margin-bottom: rem(22px);
 }
@@ -93,7 +96,9 @@ button {
   height: rem(40px);
   border: none;
   cursor: pointer;
-  transition: background-color $transition, color $transition;
+  transition:
+    background-color $transition,
+    color $transition;
 }
 
 .rating-scale-btn:hover,
@@ -121,7 +126,9 @@ button {
   margin-bottom: rem(14px);
   border-radius: $border-radius;
   cursor: pointer;
-  transition: background-color $transition, color $transition;
+  transition:
+    background-color $transition,
+    color $transition;
   text-transform: uppercase;
 }
 

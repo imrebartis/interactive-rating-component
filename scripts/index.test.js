@@ -1,6 +1,5 @@
-import { DOMUtils } from './utils.js'
-import './index.js'
-import { RatingComponent } from './index.js'
+import './index.js';
+import { RatingComponent } from './index.js';
 
 describe('RatingComponent', () => {
   document.body.innerHTML = `
@@ -30,45 +29,45 @@ describe('RatingComponent', () => {
           don't hesitate to get in touch!</p>
       </section>
     </main>
-  `
+  `;
 
-  let ratingComponent
+  let ratingComponent;
 
   beforeEach(() => {
-    ratingComponent = new RatingComponent()
-    ratingComponent.init()
-  })
+    ratingComponent = new RatingComponent();
+    ratingComponent.init();
+  });
 
   test('should initialize with correct elements', () => {
-    expect(ratingComponent.ratingScaleButtons).toHaveLength(5)
-    expect(ratingComponent.ratingSubmitButton).toBeTruthy()
-    expect(ratingComponent.ratingInputSection).toBeTruthy()
-    expect(ratingComponent.ratingConfirmationSection).toBeTruthy()
-    expect(ratingComponent.selectedRatingDisplay).toBeTruthy()
-    expect(ratingComponent.validationMessageElement).toBeTruthy()
-  })
+    expect(ratingComponent.ratingScaleButtons).toHaveLength(5);
+    expect(ratingComponent.ratingSubmitButton).toBeTruthy();
+    expect(ratingComponent.ratingInputSection).toBeTruthy();
+    expect(ratingComponent.ratingConfirmationSection).toBeTruthy();
+    expect(ratingComponent.selectedRatingDisplay).toBeTruthy();
+    expect(ratingComponent.validationMessageElement).toBeTruthy();
+  });
 
   test('should handle rating button click', () => {
-    const button = ratingComponent.ratingScaleButtons[0]
-    button.click()
-    expect(ratingComponent.currentRating).toBe('1')
-    expect(ratingComponent.selectedRatingDisplay.textContent).toBe('1')
-  })
+    const button = ratingComponent.ratingScaleButtons[0];
+    button.click();
+    expect(ratingComponent.currentRating).toBe('1');
+    expect(ratingComponent.selectedRatingDisplay.textContent).toBe('1');
+  });
 
   test('should show validation error if no rating is selected on submit', () => {
-    ratingComponent.handleSubmit()
+    ratingComponent.handleSubmit();
     expect(ratingComponent.validationMessageElement.classList).not.toContain(
       'hidden'
-    )
-  })
+    );
+  });
 
   test('should show confirmation section on valid submit', () => {
-    const button = ratingComponent.ratingScaleButtons[0]
-    button.click()
-    ratingComponent.handleSubmit()
-    expect(ratingComponent.ratingInputSection.classList).toContain('hidden')
+    const button = ratingComponent.ratingScaleButtons[0];
+    button.click();
+    ratingComponent.handleSubmit();
+    expect(ratingComponent.ratingInputSection.classList).toContain('hidden');
     expect(ratingComponent.ratingConfirmationSection.classList).not.toContain(
       'hidden'
-    )
-  })
-})
+    );
+  });
+});

@@ -121,11 +121,11 @@ I also learned the importance of unit and integration tests to ensure the reliab
 
 ```javascript
 test('should show validation error if no rating is selected on submit', () => {
-  ratingComponent.handleSubmit()
+  ratingComponent.handleSubmit();
   expect(ratingComponent.validationMessageElement.classList).not.toContain(
     'hidden'
-  )
-})
+  );
+});
 ```
 
 ### Continued development
