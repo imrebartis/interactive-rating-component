@@ -37,4 +37,16 @@ export default [
       semi: ['error', 'always'],
     },
   },
+  {
+    ignores: [
+      '**/node_modules/**',
+      'dist/**',
+      '**/*.html',
+      '**/*.json',
+      '**/*.css',
+      '**/*.md',
+      '**/*.yml',
+      '**/*.scss',
+    ],
+  },
 ];

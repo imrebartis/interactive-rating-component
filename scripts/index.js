@@ -49,7 +49,7 @@ export class RatingComponent {
 
   setInitialFocus() {
     if (this.ratingScaleButtons.length > 0) {
-      this.ratingScaleButtons[0].setAttribute('tabindex', '0'); // Ensure the element is focusable
+      this.ratingScaleButtons[0].setAttribute('tabindex', '0');
       this.ratingScaleButtons[0].focus();
     }
   }
