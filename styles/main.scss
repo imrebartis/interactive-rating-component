@@ -1,0 +1,194 @@
+@use "sass:color";
+@use "sass:math";
+@import "reset";
+@import "utils";
+@import "variables";
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: $very-dark-blue;
+  font-family: $font-family;
+  font-size: $font-size;
+  color: $white;
+}
+
+button {
+  font-family: $font-family;
+  font-weight: 700;
+  font-size: $font-size;
+  line-height: 1;
+}
+
+.rating-container {
+  max-width: rem(327px);
+}
+
+.rating-panel {
+  background: radial-gradient(circle at top, $dark-blue, color.adjust($dark-blue, $lightness: -7%));
+  border-radius: rem(15px);
+  padding: rem(16px);
+}
+
+.rating-icon,
+.rating-scale-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: color.adjust($dark-blue, $lightness: 6%);
+  padding: rem(8px);
+  color: $light-grey;
+}
+
+.rating-icon {
+  width: rem(44px);
+  height: rem(44px);
+}
+
+.rating-icon img {
+  width: rem(16.75px);
+  height: rem(16px);
+  object-fit: contain;
+}
+
+.rating-prompt-title,
+.rating-thank-you-title {
+  @include title;
+  margin-top: rem(22px);
+  margin-bottom: rem(22px);
+}
+
+.rating-thank-you-img {
+  margin-top: rem(16px);
+}
+
+.rating-description,
+.confirmation-message {
+  font-size: rem(16px);
+  line-height: rem(24px);
+  color: $light-grey;
+}
+
+.confirmation-message {
+  text-align: center;
+  margin-bottom: rem(22px);
+}
+
+.rating-confirmation-state {
+  justify-items: center;
+  display: grid;
+}
+
+.rating-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: rem(26px);
+  margin-bottom: rem(22px);
+}
+
+.rating-scale-btn {
+  width: rem(40px);
+  height: rem(40px);
+  border: none;
+  cursor: pointer;
+  transition: background-color $transition, color $transition;
+}
+
+.rating-scale-btn:hover,
+.rating-scale-btn:focus-visible {
+  background-color: $white;
+  color: $very-dark-blue;
+}
+
+.rating-scale-btn.selected {
+  background-color: $orange;
+  color: $very-dark-blue;
+}
+
+.rating-scale-btn:focus-visible {
+  outline: 2px solid $white;
+  outline-offset: 2px;
+}
+
+.submit-rating-btn {
+  width: 100%;
+  background-color: $orange;
+  color: $very-dark-blue;
+  border: none;
+  padding: rem(13.4px) rem(24px);
+  margin-bottom: rem(14px);
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: background-color $transition, color $transition;
+  text-transform: uppercase;
+}
+
+.submit-rating-btn:hover {
+  background-color: $white;
+}
+
+.rating-result {
+  background-color: color.adjust($dark-blue, $lightness: 6%);
+  color: $orange;
+  border-radius: $border-radius;
+  padding: rem(4px) rem(8.5px);
+  line-height: rem(24px);
+  font-size: rem(16px);
+  margin-top: rem(22px);
+}
+
+.error-feedback {
+  color: $error-color;
+  margin-top: rem(10px);
+}
+
+.hidden {
+  display: none;
+}
+
+@media (min-width: $tablet-width) {
+  .rating-container {
+    max-width: rem(412px);
+  }
+
+  .rating-panel {
+    padding: $padding;
+    border-radius: rem(30px);
+  }
+
+  .rating-icon {
+    width: rem(44px);
+    height: rem(44px);
+  }
+
+  .rating-prompt-title {
+    margin-top: rem(44px);
+  }
+
+  .rating-scale {
+    margin-top: rem(28px);
+    margin-bottom: rem(28px);
+  }
+
+  .submit-rating-btn {
+    margin-bottom: 0;
+  }
+
+  .rating-thank-you-img {
+    margin-top: rem(8px);
+  }
+
+  .rating-result {
+    margin-top: rem(32px);
+  }
+
+  .rating-thank-you-title {
+    margin-top: rem(42px);
+  }
+
+  .confirmation-message {
+    margin-bottom: rem(18px);
+  }
+}
