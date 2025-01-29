@@ -11,10 +11,8 @@ describe('DOMUtils', () => {
     expect(DOMUtils.getElement('#test-element')).toBeTruthy();
   });
 
-  test('getElement should log an error for an invalid selector', () => {
-    console.error = jest.fn();
-    expect(DOMUtils.getElement('#invalid-element')).toBeNull();
-    expect(console.error).toHaveBeenCalledWith(
+  test('getElement should throw an error for an invalid selector', () => {
+    expect(() => DOMUtils.getElement('#invalid-element')).toThrow(
       'Element not found for selector: #invalid-element'
     );
   });
@@ -23,10 +21,8 @@ describe('DOMUtils', () => {
     expect(DOMUtils.getElements('.test-elements')).toHaveLength(2);
   });
 
-  test('getElements should log an error for an invalid selector', () => {
-    console.error = jest.fn();
-    expect(DOMUtils.getElements('.invalid-elements')).toHaveLength(0);
-    expect(console.error).toHaveBeenCalledWith(
+  test('getElements should throw an error for an invalid selector', () => {
+    expect(() => DOMUtils.getElements('.invalid-elements')).toThrow(
       'Elements not found for selector: .invalid-elements'
     );
   });
@@ -39,10 +35,8 @@ describe('DOMUtils', () => {
     expect(handler).toHaveBeenCalled();
   });
 
-  test('addEventListener should log an error if the element is null', () => {
-    console.error = jest.fn();
-    DOMUtils.addEventListener(null, 'click', () => {});
-    expect(console.error).toHaveBeenCalledWith(
+  test('addEventListener should throw an error if the element is null', () => {
+    expect(() => DOMUtils.addEventListener(null, 'click', () => {})).toThrow(
       'Cannot add event listener to null element'
     );
   });
