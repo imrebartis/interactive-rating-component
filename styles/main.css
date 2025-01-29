@@ -82,6 +82,17 @@ button {
   line-height: 1;
 }
 
+noscript {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Overpass", sans-serif;
+  font-size: 0.9375rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
 .rating-container {
   max-width: 20.4375rem;
 }

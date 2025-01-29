@@ -21,6 +21,17 @@ button {
   line-height: 1;
 }
 
+noscript {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: $font-family;
+  font-size: $font-size;
+  padding: rem(24px);
+  text-align: center;
+}
+
 .rating-container {
   max-width: rem(327px);
 }
