@@ -1,15 +1,17 @@
+'use strict';
+
 export const DOMUtils = {
   getElement(selector) {
     const element = document.querySelector(selector);
     if (!element) {
-      console.error(`Element not found for selector: ${selector}`);
+      throw new Error(`Element not found for selector: ${selector}`);
     }
     return element;
   },
   getElements(selector) {
     const elements = document.querySelectorAll(selector);
     if (elements.length === 0) {
-      console.error(`Elements not found for selector: ${selector}`);
+      throw new Error(`Elements not found for selector: ${selector}`);
     }
     return elements;
   },
@@ -17,7 +19,7 @@ export const DOMUtils = {
     if (element) {
       element.addEventListener(event, handler);
     } else {
-      console.error('Cannot add event listener to null element');
+      throw new Error(`Cannot add event listener to null element`);
     }
   },
 };
