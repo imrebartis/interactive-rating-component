@@ -1,3 +1,5 @@
+'use strict';
+
 import { DOMUtils } from './utils.js';
 
 export class RatingComponent {
@@ -22,26 +24,33 @@ export class RatingComponent {
   addEventListeners() {
     if (this.ratingScaleButtons.length > 0) {
       this.ratingScaleButtons.forEach((button) => {
-        DOMUtils.addEventListener(button, 'click', () =>
-          this.handleRatingButtonClick(button)
+        DOMUtils.addEventListener(
+          button,
+          'click',
+          this.handleRatingButtonClick.bind(this, button)
         );
-        DOMUtils.addEventListener(button, 'mouseenter', () =>
-          this.highlightButton(button)
+        DOMUtils.addEventListener(
+          button,
+          'mouseenter',
+          this.highlightButton.bind(this, button)
         );
-        DOMUtils.addEventListener(button, 'mouseleave', () =>
-          this.resetButtonHighlight()
+        DOMUtils.addEventListener(
+          button,
+          'mouseleave',
+          this.resetButtonHighlight.bind(this)
         );
-        DOMUtils.addEventListener(button, 'focus', () =>
-          this.removeButtonHighlight()
-        );
-        DOMUtils.addEventListener(button, 'keydown', (event) =>
-          this.handleButtonKeydown(event, button)
+        DOMUtils.addEventListener(
+          button,
+          'keydown',
+          this.handleButtonKeydown.bind(this, button)
         );
       });
     }
     if (this.ratingSubmitButton) {
-      DOMUtils.addEventListener(this.ratingSubmitButton, 'click', () =>
-        this.handleSubmit()
+      DOMUtils.addEventListener(
+        this.ratingSubmitButton,
+        'click',
+        this.handleSubmit.bind(this)
       );
       this.ratingSubmitButton.setAttribute('aria-live', 'polite');
     }
@@ -54,12 +63,21 @@ export class RatingComponent {
     }
   }
 
+  updateSubmitButtonState(button) {
+    const rating = parseInt(button.value, 10);
+    this.ratingSubmitButton.setAttribute(
+      'aria-label',
+      `Submit rating of ${rating}`
+    );
+    this.ratingSubmitButton.removeAttribute('aria-disabled');
+  }
+
   handleRatingButtonClick(button) {
     this.updateRating(button.value);
     this.updateButtonState(button);
     this.clearValidationError();
     this.announceRatingChange();
-    button.blur();
+    this.updateSubmitButtonState(button);
   }
 
   highlightButton(button) {
@@ -73,16 +91,12 @@ export class RatingComponent {
       : this.resetButtonStyles();
   }
 
-  removeButtonHighlight() {
-    this.selectedButton?.classList.remove('selected');
-  }
-
   handleButtonKeydown(event, button) {
     if (['Enter', ' '].includes(event.key)) {
       event.preventDefault();
       this.updateRating(button.value);
       this.updateButtonState(button);
-      this.ratingSubmitButton.click();
+      this.updateSubmitButtonState(button);
     }
   }
 
@@ -108,6 +122,9 @@ export class RatingComponent {
     this.ratingScaleButtons.forEach((btn) =>
       btn.classList.remove('selected', 'hovered')
     );
+    if (this.selectedButton) {
+      this.selectedButton.classList.add('selected');
+    }
   }
 
   showValidationError(message) {
@@ -121,22 +138,65 @@ export class RatingComponent {
   }
 
   showConfirmation() {
+    this.announceSubmission();
     this.ratingInputSection.classList.add('hidden');
     this.ratingConfirmationSection.classList.remove('hidden');
     this.ratingConfirmationSection.focus();
   }
 
   announceRatingChange() {
-    this.selectedRatingDisplay.setAttribute('aria-live', 'polite');
+    this.selectedRatingDisplay.setAttribute('aria-live', 'assertive');
     this.selectedRatingDisplay.setAttribute('aria-atomic', 'true');
   }
 
   announceSubmission() {
-    this.ratingConfirmationSection.setAttribute('aria-live', 'polite');
+    this.ratingConfirmationSection.setAttribute('aria-live', 'assertive');
+  }
+
+  cleanup() {
+    if (this.ratingScaleButtons.length > 0) {
+      this.ratingScaleButtons.forEach((button) => {
+        DOMUtils.removeEventListener(
+          button,
+          'click',
+          this.handleRatingButtonClick.bind(this, button)
+        );
+        DOMUtils.removeEventListener(
+          button,
+          'mouseenter',
+          this.highlightButton.bind(this, button)
+        );
+        DOMUtils.removeEventListener(
+          button,
+          'mouseleave',
+          this.resetButtonHighlight.bind(this)
+        );
+        DOMUtils.removeEventListener(
+          button,
+          'keydown',
+          this.handleButtonKeydown.bind(this, button)
+        );
+      });
+    }
+
+    if (this.ratingSubmitButton) {
+      DOMUtils.removeEventListener(
+        this.ratingSubmitButton,
+        'click',
+        this.handleSubmit.bind(this)
+      );
+    }
   }
 }
 
+let ratingComponent;
 document.addEventListener('DOMContentLoaded', () => {
-  const ratingComponent = new RatingComponent();
+  ratingComponent = new RatingComponent();
   ratingComponent.init();
+});
+
+window.addEventListener('unload', () => {
+  if (ratingComponent) {
+    ratingComponent.cleanup();
+  }
 });
