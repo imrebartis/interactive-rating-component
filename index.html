@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="styles/main.css">
   <script src="scripts/index.js" type="module" defer></script>
   <title>Interactive Rating Component</title>
+  <link rel="preload" as="image" href="images/illustration-thank-you.svg" type="image/svg+xml">
 
   <style>
     .site-attribution {
@@ -38,19 +39,23 @@
 
       <p id="validation-message" class="error-feedback hidden" role="alert"></p>
 
-      <div class="rating-scale" role="group" aria-label="Rating scale">
-        <button class="rating-scale-btn" value="1">1</button>
-        <button class="rating-scale-btn" value="2">2</button>
-        <button class="rating-scale-btn" value="3">3</button>
-        <button class="rating-scale-btn" value="4">4</button>
-        <button class="rating-scale-btn" value="5">5</button>
+      <div class="rating-scale" role="group" aria-label="Rating scale from 1 to 5"
+        aria-describedby="rating-prompt rating-description">
+        <button class="rating-scale-btn" value="1" aria-label="Rate as 1 out of 5">1</button>
+        <button class="rating-scale-btn" value="2" aria-label="Rate as 2 out of 5">2</button>
+        <button class="rating-scale-btn" value="3" aria-label="Rate as 3 out of 5">3</button>
+        <button class="rating-scale-btn" value="4" aria-label="Rate as 4 out of 5">4</button>
+        <button class="rating-scale-btn" value="5" aria-label="Rate as 5 out of 5">5</button>
       </div>
 
-      <button class="submit-rating-btn" id="rating-submit" aria-disabled="true">Submit</button>
+      <button class="submit-rating-btn" id="rating-submit" aria-disabled="true" aria-describedby="validation-message">
+        Submit rating
+      </button>
     </section>
 
     <section class="rating-panel rating-confirmation-state hidden" id="rating-confirmation-section" aria-live="polite">
-      <img src="images/illustration-thank-you.svg" class="rating-thank-you-img" alt="Thank you illustration">
+      <img src="images/illustration-thank-you.svg" class="rating-thank-you-img" alt="Thank you illustration" width="162"
+        height="108" fetchpriority="high">
 
       <p class="rating-result">You selected <span id="selected-rating">0</span> out of 5</p>
 
