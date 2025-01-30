@@ -50,7 +50,7 @@ noscript {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: color.adjust($dark-blue, $lightness: 6%);
+  background-color: $button-bg;
   padding: rem(8px);
   color: $light-grey;
 }
@@ -148,7 +148,7 @@ noscript {
 }
 
 .rating-result {
-  background-color: color.adjust($dark-blue, $lightness: 6%);
+  background-color: $button-bg;
   color: $orange;
   border-radius: $border-radius;
   padding: rem(4px) rem(8.5px);
