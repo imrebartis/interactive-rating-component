@@ -91,7 +91,7 @@ export class RatingComponent {
       : this.resetButtonStyles();
   }
 
-  handleButtonKeydown(event, button) {
+  handleButtonKeydown(button, event) {
     if (['Enter', ' '].includes(event.key)) {
       event.preventDefault();
       this.updateRating(button.value);
@@ -119,11 +119,10 @@ export class RatingComponent {
   }
 
   resetButtonStyles() {
-    this.ratingScaleButtons.forEach((btn) =>
-      btn.classList.remove('selected', 'hovered')
-    );
+    this.ratingScaleButtons.forEach((btn) => btn.classList.remove('hovered'));
+
     if (this.selectedButton) {
-      this.selectedButton.classList.add('selected');
+      this.selectedButton.classList.remove('selected');
     }
   }
 
