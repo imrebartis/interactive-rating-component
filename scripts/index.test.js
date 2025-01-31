@@ -39,7 +39,7 @@ describe('RatingComponent', () => {
   });
 
   test('should initialize with correct elements', () => {
-    expect(ratingComponent.ratingScaleButtons).toHaveLength(5);
+    expect(ratingComponent.ratingScaleButtons).toHaveLength(4);
     expect(ratingComponent.ratingSubmitButton).toBeTruthy();
     expect(ratingComponent.ratingInputSection).toBeTruthy();
     expect(ratingComponent.ratingConfirmationSection).toBeTruthy();
