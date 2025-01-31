@@ -12,6 +12,7 @@ export class RatingComponent {
     );
     this.selectedRatingDisplay = DOMUtils.getElement('#selected-rating');
     this.validationMessageElement = DOMUtils.getElement('#validation-message');
+    this.ratingForm = DOMUtils.getElement('#rating-form');
     this.currentRating = 0;
     this.selectedButton = null;
   }
@@ -46,13 +47,12 @@ export class RatingComponent {
         );
       });
     }
-    if (this.ratingSubmitButton) {
+    if (this.ratingForm) {
       DOMUtils.addEventListener(
-        this.ratingSubmitButton,
-        'click',
+        this.ratingForm,
+        'submit',
         this.handleSubmit.bind(this)
       );
-      this.ratingSubmitButton.setAttribute('aria-live', 'polite');
     }
   }
 
@@ -63,13 +63,12 @@ export class RatingComponent {
     }
   }
 
-  updateSubmitButtonState(button) {
-    const rating = parseInt(button.value, 10);
+  enableSubmitButton() {
+    this.ratingSubmitButton.disabled = false;
     this.ratingSubmitButton.setAttribute(
       'aria-label',
-      `Submit rating of ${rating}`
+      `Submit rating of ${this.currentRating}`
     );
-    this.ratingSubmitButton.removeAttribute('aria-disabled');
   }
 
   handleRatingButtonClick(button) {
@@ -77,7 +76,7 @@ export class RatingComponent {
     this.updateButtonState(button);
     this.clearValidationError();
     this.announceRatingChange();
-    this.updateSubmitButtonState(button);
+    this.enableSubmitButton();
   }
 
   highlightButton(button) {
@@ -96,18 +95,19 @@ export class RatingComponent {
       event.preventDefault();
       this.updateRating(button.value);
       this.updateButtonState(button);
-      this.updateSubmitButtonState(button);
+      this.enableSubmitButton();
     }
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
+    event.preventDefault();
     this.currentRating > 0
       ? this.showConfirmation()
       : this.showValidationError('Please select a rating before submitting.');
   }
 
   updateRating(value) {
-    this.currentRating = value;
+    this.currentRating = parseInt(value, 10);
     this.selectedRatingDisplay.textContent = value;
   }
 
@@ -178,10 +178,10 @@ export class RatingComponent {
       });
     }
 
-    if (this.ratingSubmitButton) {
+    if (this.ratingForm) {
       DOMUtils.removeEventListener(
-        this.ratingSubmitButton,
-        'click',
+        this.ratingForm,
+        'submit',
         this.handleSubmit.bind(this)
       );
     }

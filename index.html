@@ -58,57 +58,64 @@
           role="alert"
         ></p>
 
-        <div
-          class="rating-scale"
-          role="group"
-          aria-label="Rating scale from 1 to 5"
-          aria-describedby="rating-prompt rating-description"
-        >
-          <button
-            class="rating-scale-btn"
-            value="1"
-            aria-label="Rate as 1 out of 5"
+        <form id="rating-form">
+          <div
+            class="rating-scale"
+            role="group"
+            aria-label="Rating scale from 1 to 5"
+            aria-describedby="rating-prompt rating-description"
           >
-            1
-          </button>
-          <button
-            class="rating-scale-btn"
-            value="2"
-            aria-label="Rate as 2 out of 5"
-          >
-            2
-          </button>
-          <button
-            class="rating-scale-btn"
-            value="3"
-            aria-label="Rate as 3 out of 5"
-          >
-            3
-          </button>
-          <button
-            class="rating-scale-btn"
-            value="4"
-            aria-label="Rate as 4 out of 5"
-          >
-            4
-          </button>
-          <button
-            class="rating-scale-btn"
-            value="5"
-            aria-label="Rate as 5 out of 5"
-          >
-            5
-          </button>
-        </div>
+            <button
+              type="button"
+              class="rating-scale-btn"
+              value="1"
+              aria-label="Rate as 1 out of 5"
+            >
+              1
+            </button>
+            <button
+              type="button"
+              class="rating-scale-btn"
+              value="2"
+              aria-label="Rate as 2 out of 5"
+            >
+              2
+            </button>
+            <button
+              type="button"
+              class="rating-scale-btn"
+              value="3"
+              aria-label="Rate as 3 out of 5"
+            >
+              3
+            </button>
+            <button
+              type="button"
+              class="rating-scale-btn"
+              value="4"
+              aria-label="Rate as 4 out of 5"
+            >
+              4
+            </button>
+            <button
+              type="button"
+              class="rating-scale-btn"
+              value="5"
+              aria-label="Rate as 5 out of 5"
+            >
+              5
+            </button>
+          </div>
 
-        <button
-          class="submit-rating-btn"
-          id="rating-submit"
-          aria-disabled="true"
-          aria-describedby="validation-message"
-        >
-          Submit
-        </button>
+          <button
+            class="submit-rating-btn"
+            id="rating-submit"
+            aria-disabled="true"
+            aria-describedby="validation-message"
+          >
+            Submit
+          </button>
+        </form>
       </section>
 
       <section
