@@ -12,14 +12,16 @@ describe('RatingComponent', () => {
         <p class="rating-description">Please let us know how we did with your support request. All feedback is appreciated
           to help us improve our offering!</p>
         <p id="validation-message" class="error-feedback hidden" role="alert"></p>
-        <div class="rating-scale" role="group" aria-label="Rating scale">
-          <button class="rating-scale-btn" value="1">1</button>
-          <button class="rating-scale-btn" value="2">2</button>
-          <button class="rating-scale-btn" value="3">3</button>
-          <button class="rating-scale-btn" value="4">4</button>
-          <button class="rating-scale-btn" value="5">5</button>
-        </div>
-        <button class="submit-rating-btn" id="rating-submit" aria-disabled="true">Submit</button>
+        <form id="rating-form">
+          <div class="rating-scale" role="group" aria-label="Rating scale">
+            <button class="rating-scale-btn" value="1">1</button>
+            <button class="rating-scale-btn" value="2">2</button>
+            <button class="rating-scale-btn" value="3">3</button>
+            <button class="rating-scale-btn" value="4">4</button>
+            <button class="rating-scale-btn" value="5">5</button>
+          </div>
+          <button class="submit-rating-btn" id="rating-submit" aria-disabled="true">Submit</button>
+        </form>
       </section>
       <section class="rating-panel rating-confirmation-state hidden" id="rating-confirmation-section" aria-live="polite">
         <img src="images/illustration-thank-you.svg" alt="Thank you illustration">
@@ -50,21 +52,23 @@ describe('RatingComponent', () => {
   test('should handle rating button click', () => {
     const button = ratingComponent.ratingScaleButtons[0];
     button.click();
-    expect(ratingComponent.currentRating).toBe('1');
+    expect(ratingComponent.currentRating).toBe(1);
     expect(ratingComponent.selectedRatingDisplay.textContent).toBe('1');
   });
 
   test('should show validation error if no rating is selected on submit', () => {
-    ratingComponent.handleSubmit();
+    const mockEvent = { preventDefault: jest.fn() };
+    ratingComponent.handleSubmit(mockEvent);
     expect(ratingComponent.validationMessageElement.classList).not.toContain(
       'hidden'
     );
   });
 
   test('should show confirmation section on valid submit', () => {
+    const mockEvent = { preventDefault: jest.fn() };
     const button = ratingComponent.ratingScaleButtons[0];
     button.click();
-    ratingComponent.handleSubmit();
+    ratingComponent.handleSubmit(mockEvent);
     expect(ratingComponent.ratingInputSection.classList).toContain('hidden');
     expect(ratingComponent.ratingConfirmationSection.classList).not.toContain(
       'hidden'
