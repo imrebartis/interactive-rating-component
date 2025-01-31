@@ -6,10 +6,35 @@ on:
       - main
 
 permissions:
-    contents: write
+  contents: write
 
 jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run ESLint
+        run: npm run lint:fix
+
+      - name: Run Stylelint
+        run: npm run lint:sass:fix
+
+      - name: Run tests
+        run: npm test
+
   build-and-deploy:
+    needs: lint-and-test
     runs-on: ubuntu-latest
 
     steps:
@@ -20,6 +45,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
@@ -28,7 +54,8 @@ jobs:
         run: npm run build
 
       - name: Deploy to GitHub Pages
+        if: success()
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./dist
