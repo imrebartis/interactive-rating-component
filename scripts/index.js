@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ratingComponent.init();
 });
 
-window.addEventListener('unload', () => {
+window.addEventListener('beforeunload', () => {
   if (ratingComponent) {
     ratingComponent.cleanup();
   }
