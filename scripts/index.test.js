@@ -3,7 +3,7 @@ import { RatingComponent } from './index.js';
 
 describe('RatingComponent', () => {
   document.body.innerHTML = `
-    <main class="rating-container" role="main">
+    <main class="rating-container">
       <section class="rating-panel rating-input-state" id="rating-input-section" aria-labelledby="rating-prompt">
         <header class="rating-icon">
           <img src="images/icon-star.svg" alt="Star icon">
