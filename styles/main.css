@@ -221,6 +221,18 @@ noscript {
   display: none;
 }
 
+.site-attribution {
+  font-size: 0.6875rem;
+  text-align: center;
+}
+.site-attribution a {
+  color: hsl(0, 0%, 100%);
+  transition: color 0.3s;
+}
+.site-attribution a:hover {
+  color: hsl(25, 97%, 53%);
+}
+
 @media (min-width: 768px) {
   .rating-container {
     max-width: 25.75rem;

@@ -8,8 +8,8 @@ describe('RatingComponent', () => {
         <header class="rating-icon">
           <img src="images/icon-star.svg" alt="Star icon">
         </header>
-        <h1 id="rating-prompt" class="rating-title">How did we do?</h1>
-        <p class="rating-description">Please let us know how we did with your support request. All feedback is appreciated
+        <h1 id="rating-prompt" class="rating-prompt-title">How did we do?</h1>
+        <p id="rating-description" class="rating-description">Please let us know how we did with your support request. All feedback is appreciated
           to help us improve our offering!</p>
         <p id="validation-message" class="error-feedback hidden" role="alert"></p>
         <form id="rating-form">
