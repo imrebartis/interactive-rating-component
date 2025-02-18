@@ -6,27 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="styles/main.css">
-  <script src="scripts/index.js" type="module" defer></script>
+  <script src="scripts/index.js" type="module"></script>
   <title>Interactive Rating Component</title>
   <link rel="preload" as="image" href="images/illustration-thank-you.svg" type="image/svg+xml">
-
-  <style>
-    .site-attribution {
-      font-size: 11px;
-      text-align: center;
-    }
-
-    .site-attribution a {
-      color: white;
-    }
-  </style>
 </head>
 
 <body>
   <noscript>
     <p>This component requires JavaScript to function properly.</p>
   </noscript>
-  <main class="rating-container" role="main">
+  <main class="rating-container">
     <section class="rating-panel rating-input-state" id="rating-input-section" aria-labelledby="rating-prompt">
       <header class="rating-icon">
         <img src="images/icon-star.svg" alt="Star icon">
@@ -34,7 +23,8 @@
 
       <h1 id="rating-prompt" class="rating-prompt-title">How did we do?</h1>
 
-      <p class="rating-description">Please let us know how we did with your support request. All feedback is appreciated
+      <p id="rating-description" class="rating-description">Please let us know how we did with your support request. All
+        feedback is appreciated
         to help us improve our offering!</p>
 
       <p id="validation-message" class="error-feedback hidden" role="alert"></p>
@@ -57,7 +47,7 @@
 
     <section class="rating-panel rating-confirmation-state hidden" id="rating-confirmation-section" aria-live="polite">
       <img src="images/illustration-thank-you.svg" class="rating-thank-you-img" alt="Thank you illustration" width="162"
-        height="108" fetchpriority="high">
+        height="108" loading="eager">
 
       <p class="rating-result">You selected <span id="selected-rating">0</span> out of 5</p>
 
@@ -69,8 +59,9 @@
   </main>
 
   <footer class="site-attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
-    Coded by <a href="https://github.com/imrebartis" target="_blank">Imre Bartis</a>.
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" rel="noopener">Frontend
+      Mentor</a>.
+    Coded by <a href="https://github.com/imrebartis" target="_blank" rel="noopener">Imre Bartis</a>.
   </footer>
 </body>
 

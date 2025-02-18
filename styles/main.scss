@@ -166,6 +166,20 @@ noscript {
   display: none;
 }
 
+.site-attribution {
+  font-size: rem(11px);
+  text-align: center;
+
+  a {
+    color: $white;
+    transition: color $transition;
+
+    &:hover {
+      color: $orange;
+    }
+  }
+}
+
 @media (min-width: $tablet-width) {
   .rating-container {
     max-width: rem(412px);
